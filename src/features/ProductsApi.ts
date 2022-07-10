@@ -4,7 +4,7 @@ import { Product } from "./Product";
 export const productApi = createApi({
     reducerPath: 'productsApi',
     baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:3000',
+        baseUrl: window.PRODUCT_API_URL,
     }),
     tagTypes: ['Products'],
     endpoints: (builder) => ({

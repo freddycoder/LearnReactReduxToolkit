@@ -1,0 +1,55 @@
+# Create a config map with the api url
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: config-react-iu
+data:
+  config.js: |
+    var PRODUCT_API_URL = "http://localhost:30081";
+---
+# This is a k8s deployment file
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: react-iu
+  labels:
+    app: react-iu
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: react-iu
+  template:
+    metadata:
+      labels:
+        app: react-iu
+    spec:
+      containers:
+      - name: react-iu
+        image: crudiu:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        volumeMounts:
+        - name: react-iu-config
+          mountPath: /usr/share/nginx/html/static/config
+      volumes:
+      - name: react-iu-config
+        configMap:
+          name: config-react-iu
+---
+# The service to expose the react app on local kubernetes cluster
+kind: Service
+apiVersion: v1
+metadata:
+  name: react-iu
+  labels:
+    app: react-iu
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+    nodePort: 30080
+  selector:
+    app: react-iu

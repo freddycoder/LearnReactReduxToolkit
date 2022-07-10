@@ -50,3 +50,10 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 ### ```docker build -t crudiu .```
 
 ### ```docker run -d -p 8080:80 crudiu```
+
+## Kubernetes
+
+### ```kubectl create namespace crudapp```
+
+### ```kubectl apply -f .\k8s\deployment.yaml -n crudapp```
+
