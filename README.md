@@ -55,5 +55,5 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 ### ```kubectl create namespace crudapp```
 
-### ```kubectl apply -f .\k8s\deployment.yaml -n crudapp```
+### ```kubectl apply -f .\k8s\deploiement.yaml -n crudapp```
 

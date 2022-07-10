@@ -26,6 +26,44 @@
   color: #71bf42;
 }
 
+.App-table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.App-table thead tr {
+  background: #4ab747;
+  color: #ffffff;
+  text-align: center;
+}
+
+.App-table th,
+.App-table td {
+    padding: 12px 15px;
+}
+
+.App-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.App-table tbody tr:hover {
+  background-color: #223e32;
+}
+
+.App-table tbody tr:last-of-type {
+  border-bottom: 2px solid #86c43f;
+}
+
+.App-table tbody tr.active-row {
+  font-weight: bold;
+  color: #009879;
+}
+
+
 @keyframes App-logo-float {
   0% {
     transform: translateY(0);

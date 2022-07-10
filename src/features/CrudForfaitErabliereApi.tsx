@@ -18,7 +18,7 @@ const CrudForfaitErabliereApi = () => {
             ) : data ? (
                 <div>
                     <CreerProduit />
-                    <table>
+                    <table className="App-table">
                         <thead>
                             <tr>
                                 <th>Titre</th>
