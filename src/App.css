@@ -26,6 +26,7 @@
   color: #71bf42;
 }
 
+/* Table begin */
 .App-table {
   border-collapse: collapse;
   margin: 25px 0;
@@ -63,6 +64,27 @@
   color: #009879;
 }
 
+/* Table end */
+/* Form begin */
+.form-field-container {
+  display: grid;
+  text-align: left;
+}
+
+.form-field {
+  grid-row-start: 2;
+}
+
+.form-field-name {
+  grid-row-start: 1;
+}
+
+.form-title {
+  text-align: left;
+  cursor: pointer;
+}
+
+/* Form end */
 
 @keyframes App-logo-float {
   0% {

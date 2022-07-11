@@ -34,7 +34,7 @@ const CrudForfaitErabliereApi = () => {
                                     <td>{product.description}</td>
                                     <td>{product.price}</td>
                                     <td>
-                                        <button onClick={() => deleteProduct(product.id ? product.id.toString() : "")}>Delete</button>
+                                        <button onClick={() => deleteProduct(product.id ? product.id.toString() : "")}>Supprimer</button>
                                     </td>
                                 </tr>
                             ))}
