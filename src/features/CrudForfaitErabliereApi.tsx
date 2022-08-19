@@ -1,9 +1,9 @@
 import CreerProduit from './CreerProduit';
-import { useDeleteProductMutation, useGetProductsQuery } from './ProductsApi';
+import { useGetProductsQuery } from '../services/ProductsApi';
+import { ProduitsTable } from './ProduitsTable';
 
 const CrudForfaitErabliereApi = () => {
     const { data, error, isLoading } = useGetProductsQuery({})
-    const [ deleteProduct, deleteResult ] = useDeleteProductMutation({})
 
     if (error) {
         console.log(error)
@@ -18,28 +18,7 @@ const CrudForfaitErabliereApi = () => {
             ) : data ? (
                 <div>
                     <CreerProduit />
-                    <table className="App-table">
-                        <thead>
-                            <tr>
-                                <th>Titre</th>
-                                <th>Description</th>
-                                <th>Prix</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {data.map(product => (
-                                <tr key={product.id}>
-                                    <td>{product.title}</td>
-                                    <td>{product.description}</td>
-                                    <td>{product.price}</td>
-                                    <td>
-                                        <button onClick={() => deleteProduct(product.id ? product.id.toString() : "")}>Supprimer</button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                    <ProduitsTable />
                 </div>
             ) : null
         }</div>
