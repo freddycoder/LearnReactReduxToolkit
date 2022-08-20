@@ -1,4 +1,4 @@
-import CreerProduit from './CreerProduit';
+import ProduitForm from './ProduitForm';
 import { useGetProductsQuery } from '../services/ProductsApi';
 import { ProduitsTable } from './ProduitsTable';
 
@@ -17,7 +17,7 @@ const CrudForfaitErabliereApi = () => {
                 <div>Loading...</div>
             ) : data ? (
                 <div>
-                    <CreerProduit />
+                    <ProduitForm />
                     <ProduitsTable />
                 </div>
             ) : null

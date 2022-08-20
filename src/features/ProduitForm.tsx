@@ -3,7 +3,7 @@ import { InputField } from "../components/InputField";
 import { Product } from "../models/Product";
 import { useCreateProductMutation } from "../services/ProductsApi";
 
-const CreerProduit = () => {
+const ProduitForm = () => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
@@ -45,4 +45,4 @@ const CreerProduit = () => {
     )
 }
 
-export default CreerProduit;
+export default ProduitForm;
