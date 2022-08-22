@@ -4,7 +4,7 @@ export interface InputFieldProps {
     onChange: (e: any) => void;
 }
 
-export const InputField = ({label,value,onChange}: InputFieldProps) => {
+export const InputField = ({ label, value, onChange }: InputFieldProps) => {
     return (
         <>
             <div className="form-field-name">

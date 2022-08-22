@@ -1,4 +1,4 @@
-import ProduitForm from './ProduitForm';
+import { ProduitForm } from './ProduitForm';
 import { useGetProductsQuery } from '../services/ProductsApi';
 import { ProduitsTable } from './ProduitsTable';
 
