@@ -1,7 +1,7 @@
 export interface InputFieldProps {
-    label: string;
-    value: string;
-    onChange: (e: any) => void;
+    label: string
+    value: string
+    onChange?: (e: any) => void
 }
 
 export const InputField = ({ label, value, onChange }: InputFieldProps) => {

@@ -1,46 +1,68 @@
-import { useState } from "react";
-import { useAppSelector } from "../app/hooks";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { InputField } from "../components/InputField";
 import { Product } from "../models/Product";
-import { useCreateProductMutation } from "../services/ProductsApi";
-import { selectProductSlice } from "../services/ProductSlice";
+import { useCreateProductMutation, useUpdateProductMutation } from "../services/ProductsApi";
+import { selectProductSlice, setDescription, setEditProduct, setFormVisible, setPrice, setTitle } from "../services/ProductSlice";
 
 export const ProduitForm = () => {
     const state = useAppSelector(selectProductSlice)
-    const [title, setTitle] = useState('')
-    const [description, setDescription] = useState('')
-    const [price, setPrice] = useState('')
+    const dispatch = useAppDispatch()
+    const [postProduct, postResult] = useCreateProductMutation()
+    const [updateProduct, updateResult] = useUpdateProductMutation()
 
-    const [postProduct, result] = useCreateProductMutation()
+    const cleanInfo = () => {
+        dispatch(setEditProduct({
+            title: "",
+            description: "",
+            price: ""
+        }))
+    }
 
     const handleSubmit = async (e: any) => {
         e.preventDefault()
         let product: Product = {
-            title: title,
-            description: description,
-            price: parseInt(price)
+            id: state.editProduct?.id,
+            title: state.editProduct?.title,
+            description: state.editProduct?.description,
+            price: parseInt(state.editProduct?.price ?? "")
         }
-        await postProduct(product).unwrap()
-        setTitle('')
-        setDescription('')
-        setPrice('')
+        console.log(product)
+        if (product.id == null) {
+            await postProduct(product).unwrap()
+            cleanInfo()
+        } 
+        else {
+            await updateProduct(product).unwrap()
+            cleanInfo()
+            dispatch(setFormVisible(false))
+        }
     }
 
-    const [isVisible, setIsVisible] = useState(false)
-
-    const handleOnClick = (e: any) => {
-        setIsVisible(preIsVisibleValue => !preIsVisibleValue)
+    const handleVisibilityClic = (e: any) => {
+        const visible = !state.formVisible
+        dispatch(setFormVisible(visible))
+        if (!visible) {
+            cleanInfo()
+            setEditProduct(undefined)
+        }
+        else {
+            dispatch(setEditProduct({
+                title: "",
+                description: "",
+                price: ""
+            }))
+        }
     }
 
     return (
         <div>
-            <h4 className="form-title" onClick={handleOnClick}>{state.productFormTitle}</h4>
+            <h4 className="form-title" onClick={handleVisibilityClic}>{state.productFormTitle}</h4>
             <form onSubmit={handleSubmit}>
-                {isVisible ? (
+                {state.formVisible ? (
                     <div className="form-field-container">
-                        <InputField label="Titre"       value={title}       onChange={(e) => setTitle(e.target.value)} />
-                        <InputField label="Description" value={description} onChange={(e) => setDescription(e.target.value)} />
-                        <InputField label="Prix"        value={price}       onChange={(e) => setPrice(e.target.value)} />
+                        <InputField label="Titre"       value={state.editProduct?.title ?? ""}             onChange={(e) => dispatch(setTitle(e.target.value))} />
+                        <InputField label="Description" value={state.editProduct?.description ?? ""}       onChange={(e) => dispatch(setDescription(e.target.value))} />
+                        <InputField label="Prix"        value={state.editProduct?.price?.toString() ?? ""} onChange={(e) => dispatch(setPrice(e.target.value))} />
                         <div className="form-field">
                             <button type="submit">{state.productFormButtonText}</button>
                         </div>

@@ -21,6 +21,15 @@ export const productApi = createApi({
             transformResponse: (response: { data: Product }, meta, arg) => response.data,
             invalidatesTags: ['Products'],
         }),
+        updateProduct: builder.mutation<Product, Product>({
+            query: ({id, ...patch}) => ({
+                url: `/products/${id}`,
+                method: 'PATCH',
+                body: patch
+            }),
+            transformResponse: (response: { data: Product }, meta, arg) => response.data,
+            invalidatesTags: ['Products'],
+        }),
         deleteProduct: builder.mutation<Product, string>({
             query: (id) => ({
                 url: `/products/${id}`,
@@ -32,4 +41,8 @@ export const productApi = createApi({
     }),
 })
 
-export const { useGetProductsQuery, useCreateProductMutation, useDeleteProductMutation } = productApi;
+export const {
+    useGetProductsQuery, 
+    useCreateProductMutation,
+    useUpdateProductMutation, 
+    useDeleteProductMutation } = productApi;
