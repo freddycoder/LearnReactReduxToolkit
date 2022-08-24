@@ -10,16 +10,16 @@ export const store = configureStore({
 
   },
   middleware: (getDefaultMiddleware) => {
-    return getDefaultMiddleware().concat(productApi.middleware);
+    return getDefaultMiddleware().concat(productApi.middleware)
   },
 });
 
 setupListeners(store.dispatch)
-export type AppDispatch = typeof store.dispatch;
-export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch
+export type RootState = ReturnType<typeof store.getState>
 export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,
   RootState,
   unknown,
   Action<string>
->;
+>
