@@ -71,19 +71,24 @@
   text-align: left;
 }
 
-.form-field {
-  grid-row-start: 2;
+.form-error {
+  color: #ff0000;
+  display: inline-block;
+  grid-row: 1;
 }
 
 .form-field-name {
-  grid-row-start: 1;
+  grid-row-start: 2;
+}
+
+.form-field {
+  grid-row-start: 3;
 }
 
 .form-title {
   text-align: left;
   cursor: pointer;
 }
-
 /* Form end */
 
 @keyframes App-logo-float {
