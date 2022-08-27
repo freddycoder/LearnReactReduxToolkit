@@ -41,12 +41,26 @@ export const ProduitForm = () => {
             }
             if (product.id == null) {
                 await postProduct(product).unwrap()
-                cleanInfo()
+                .catch(e => {
+                    setErrorMessage(e.message ?? 'An unexpected error has occurred. Please retry.')
+                    throw e
+                })
+                .then(payload => {
+                    cleanInfo()
+                    return payload
+                })
             }
             else {
                 await updateProduct(product).unwrap()
-                cleanInfo()
-                dispatch(setFormVisible(false))
+                .catch(e => {
+                    setErrorMessage(e.message ?? 'An unexpected error has occurred. Please retry.')
+                    throw e
+                })
+                .then(payload => {
+                    cleanInfo()
+                    dispatch(setFormVisible(false))
+                    return payload
+                })
             }
         }
         else {

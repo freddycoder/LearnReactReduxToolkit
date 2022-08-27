@@ -5,8 +5,8 @@ import { useDeleteProductMutation, useGetProductsQuery } from "../services/Produ
 import { setEditProduct, setFormVisible } from "../services/ProductSlice"
 
 export const ProduitsTable = () => {
-    const { data, error, isLoading } = useGetProductsQuery({})
-    const [ deleteProduct, deleteResult ] = useDeleteProductMutation({})
+    const { data } = useGetProductsQuery({})
+    const [deleteProduct] = useDeleteProductMutation({})
     const dispatch = useAppDispatch()
 
     const onEditClic = (product: Product) => {
@@ -15,7 +15,7 @@ export const ProduitsTable = () => {
             title: product.title,
             description: product.description,
             price: product.price?.toString()
-        }
+        }   
 
         dispatch(setEditProduct(produitFormData))
         dispatch(setFormVisible(true))

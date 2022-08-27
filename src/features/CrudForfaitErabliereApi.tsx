@@ -2,7 +2,7 @@ import { ProduitForm } from './ProduitForm';
 import { useGetProductsQuery } from '../services/ProductsApi';
 import { ProduitsTable } from './ProduitsTable';
 
-const CrudForfaitErabliereApi = () => {
+export const CrudForfaitErabliereApi = () => {
     const { data, error, isLoading } = useGetProductsQuery({})
 
     if (error) {
@@ -12,7 +12,7 @@ const CrudForfaitErabliereApi = () => {
     return (<div>
         {
             error ? (
-                <div>Sorry... An error occure</div>
+                <div>Sorry... An error occure <a href="/">Retry</a></div>
             ) : isLoading ? (
                 <div>Loading...</div>
             ) : data ? (
@@ -24,5 +24,3 @@ const CrudForfaitErabliereApi = () => {
         }</div>
     )
 }
-
-export default CrudForfaitErabliereApi

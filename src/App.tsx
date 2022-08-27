@@ -1,7 +1,6 @@
-import React from 'react';
 import logo from './FullLogo_Transparent.png';
 import './App.css';
-import CrudForfaitErabliereApi from './features/CrudForfaitErabliereApi';
+import { CrudForfaitErabliereApi } from './features/CrudForfaitErabliereApi';
 
 function App() {
   return (
