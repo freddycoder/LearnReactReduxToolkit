@@ -1,5 +1,6 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query'
+import { errorManagementMiddleware } from '../services/middlewares/errorManagementMiddleware';
 import { productApi } from '../services/ProductsApi'
 import { productSlice } from '../services/ProductSlice'
 
@@ -10,7 +11,7 @@ export const store = configureStore({
 
   },
   middleware: (getDefaultMiddleware) => {
-    return getDefaultMiddleware().concat(productApi.middleware)
+    return getDefaultMiddleware().concat(productApi.middleware).concat(errorManagementMiddleware)
   },
 });
 

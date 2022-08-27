@@ -37,7 +37,7 @@ export const ProduitsTable = () => {
                     <tr key={product.id}>
                         <td>{product.title}</td>
                         <td>{product.description}</td>
-                        <td>{product.price}</td>
+                        <td>{product.price} $</td>
                         <td>
                             <button onClick={() => onEditClic(product)}>Modifier</button>
                             <button onClick={() => deleteProduct(product.id ? product.id.toString() : "")}>Supprimer</button>
