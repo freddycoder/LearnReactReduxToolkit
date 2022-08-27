@@ -1,4 +1,5 @@
 import { useAppDispatch } from "../app/hooks"
+import { InfoBulle } from "../components/InfoBulle"
 import { Product } from "../models/Product"
 import { ProductFormModel } from "../models/ProductFormModel"
 import { useDeleteProductMutation, useGetProductsQuery } from "../services/ProductsApi"
@@ -27,7 +28,7 @@ export const ProduitsTable = () => {
                 <tr>
                     <th>Titre</th>
                     <th>Description</th>
-                    <th>Prix</th>
+                    <th><InfoBulle title="Le prix est en dollar canadien" placement="right">Prix</InfoBulle></th>
                     <th></th>
                 </tr>
             </thead>

@@ -28,6 +28,11 @@ export const ProduitForm = () => {
         }))
     }
 
+    const catchFunction = (error:any) => {
+        setErrorMessage(error.message ?? 'An unexpected error has occurred. Please retry.')
+        throw error
+    }
+
     const handleSubmit = async (e: any) => {
         e.preventDefault()
         const isValid = await validation.isValid(state.editProduct)
@@ -41,10 +46,7 @@ export const ProduitForm = () => {
             }
             if (product.id == null) {
                 await postProduct(product).unwrap()
-                .catch(e => {
-                    setErrorMessage(e.message ?? 'An unexpected error has occurred. Please retry.')
-                    throw e
-                })
+                .catch(catchFunction)
                 .then(payload => {
                     cleanInfo()
                     return payload
@@ -52,10 +54,7 @@ export const ProduitForm = () => {
             }
             else {
                 await updateProduct(product).unwrap()
-                .catch(e => {
-                    setErrorMessage(e.message ?? 'An unexpected error has occurred. Please retry.')
-                    throw e
-                })
+                .catch(catchFunction)
                 .then(payload => {
                     cleanInfo()
                     dispatch(setFormVisible(false))
@@ -89,12 +88,12 @@ export const ProduitForm = () => {
     return (
         <div>
             <h4 className="form-title" onClick={handleVisibilityClic}>{state.productFormTitle}</h4>
+            {errorMessage ? <div className="form-error">
+                <span>{errorMessage}</span>
+            </div> : null}
             <form onSubmit={handleSubmit}>
                 {state.formVisible ? (
                     <div className="form-field-container">
-                        <div className="form-error">
-                            <span>{errorMessage}</span>
-                        </div>
                         <InputField
                             label="Titre"
                             value={state.editProduct?.title ?? ""}

@@ -71,23 +71,22 @@
   text-align: left;
 }
 
-.form-error {
-  color: #ff0000;
-  display: inline-block;
-  grid-row: 1;
-}
-
 .form-field-name {
-  grid-row-start: 2;
+  grid-row-start: 1;
 }
 
 .form-field {
-  grid-row-start: 3;
+  grid-row-start: 2;
 }
 
 .form-title {
   text-align: left;
   cursor: pointer;
+}
+
+.form-error {
+  color: #ff0000;
+  display: inline-block;
 }
 /* Form end */
 
