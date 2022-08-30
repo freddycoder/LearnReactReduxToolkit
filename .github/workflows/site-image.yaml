@@ -1,0 +1,28 @@
+name: LearnReactRedux-Docker-CI
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - .github/**
+      - '*.yaml'
+      - '*.md'
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths-ignore:
+      - .github/**
+      - '*.yaml'
+      - '*.md'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      # Build the image
+      - name: Docker build
+        run: docker build -t learnreactredux:latest .
+        
