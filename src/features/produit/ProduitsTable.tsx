@@ -1,9 +1,9 @@
-import { useAppDispatch } from "../app/hooks"
-import { InfoBulle } from "../components/InfoBulle"
-import { Product } from "../models/Product"
-import { ProductFormModel } from "../models/ProductFormModel"
-import { useDeleteProductMutation, useGetProductsQuery } from "../services/ProductsApi"
-import { setEditProduct, setFormVisible } from "../services/ProductSlice"
+import { useAppDispatch } from "../../app/hooks"
+import { InfoBulle } from "../../components/InfoBulle"
+import { Product } from "../../models/Product"
+import { ProductFormModel } from "../../models/ProductFormModel"
+import { useDeleteProductMutation, useGetProductsQuery } from "../../services/produit/ProductsApi"
+import { setEditProduct, setFormVisible } from "../../services/produit/ProductSlice"
 
 export const ProduitsTable = () => {
     const { data } = useGetProductsQuery({})

@@ -1,17 +1,21 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query'
-import { errorManagementMiddleware } from '../services/middlewares/errorManagementMiddleware';
-import { productApi } from '../services/ProductsApi'
-import { productSlice } from '../services/ProductSlice'
+import { documentApi } from '../services/document/DocumentApi';
+import { documentSlice } from '../services/document/DocumentSlice';
+import { productApi } from '../services/produit/ProductsApi';
+import { productSlice } from '../services/produit/ProductSlice';
+import { errorManagementMiddleware } from './middlewares/errorManagementMiddleware';
 
 export const store = configureStore({
   reducer: {
     [productApi.reducerPath]: productApi.reducer,
-    productSlice: productSlice.reducer
+    [documentApi.reducerPath]: documentApi.reducer,
+    productSlice: productSlice.reducer,
+    documentSlice: documentSlice.reducer
 
   },
   middleware: (getDefaultMiddleware) => {
-    return getDefaultMiddleware().concat(productApi.middleware).concat(errorManagementMiddleware)
+    return getDefaultMiddleware().concat(productApi.middleware).concat(documentApi.middleware).concat(errorManagementMiddleware)
   },
 });
 

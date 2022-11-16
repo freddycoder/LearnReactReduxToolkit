@@ -1,5 +1,5 @@
 import { ProduitForm } from './ProduitForm';
-import { useGetProductsQuery } from '../services/ProductsApi';
+import { useGetProductsQuery } from '../../services/produit/ProductsApi';
 import { ProduitsTable } from './ProduitsTable';
 
 export const CrudForfaitErabliereApi = () => {
