@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { RootState } from "../app/store";
-import { ProductFormModel } from "../models/ProductFormModel";
+import { RootState } from "../../app/store";
+import { ProductFormModel } from "../../models/ProductFormModel";
 
 export interface ProductSliceState {
     productFormTitle: string

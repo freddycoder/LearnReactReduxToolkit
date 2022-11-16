@@ -1,8 +1,8 @@
-import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { InputField } from "../components/InputField";
-import { Product } from "../models/Product";
-import { useCreateProductMutation, useUpdateProductMutation } from "../services/ProductsApi";
-import { selectProductSlice, setDescription, setEditProduct, setFormVisible, setPrice, setTitle } from "../services/ProductSlice";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { InputField } from "../../components/InputField";
+import { Product } from "../../models/Product";
+import { useCreateProductMutation, useUpdateProductMutation } from "../../services/produit/ProductsApi";
+import { selectProductSlice, setDescription, setEditProduct, setFormVisible, setPrice, setTitle } from "../../services/produit/ProductSlice";
 import * as yup from 'yup'
 import { useState } from "react";
 
