@@ -14,12 +14,68 @@
 }
 
 .App-header {
-  min-height: 100vh;
+  min-height: 50vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
+}
+
+nav {
+  border-bottom: 1px solid #cfcfcfcf;
+  width: 100%;
+}
+
+nav ul {
+  margin-top: 3px;
+  margin-bottom: 11px;
+}
+
+nav ul li {
+  list-style: none;
+  display: inline-block;
+  margin: 0 5px;
+  position: relative;
+}
+
+nav ul li :hover {
+  color: #cfcfcfcf;
+  text-decoration: underline;
+}
+
+nav ul li ul {
+  visibility: hidden;
+  position: absolute;
+  top: 90%;
+  right: -19%;
+  display: none;
+}
+
+nav ul li:hover > ul,
+ul li:focus-within > ul,
+ul li ul:hover,
+ul li ul:focus,
+ul li ul li:hover {
+   visibility: visible;
+   opacity: 1;
+   display: block;
+}
+
+nav ul li ul li {
+  clear: both;
+  width: 100%;
+  z-index: 1000;
+  background-color: #2b2b2b;
+  border: 1px solid #cfcfcfcf;
+}
+
+nav ul li span {
+  cursor: pointer;
+}
+
+nav ul li label {
+  cursor: pointer;
 }
 
 .App-link {
@@ -105,4 +161,9 @@
 body {
   background-color: #0a261b;
   color: #cfcfcfcf;
+}
+
+a {
+  color: #cfcfcfcf;
+  text-decoration: unset;
 }
