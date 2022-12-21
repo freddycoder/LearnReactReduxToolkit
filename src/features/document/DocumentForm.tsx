@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { usePutDocumentMutation } from "../../services/document/DocumentApi";
+import { usePostDocumentMutation, usePutDocumentMutation } from "../../services/document/DocumentApi";
 import { selectDocumentSlice } from "../../services/document/DocumentSlice";
 import * as yup from 'yup'
 import { useState } from "react";
@@ -10,6 +10,7 @@ import { blobToBase64 } from "../../util/base64util";
 export const DocumentForm = () => {
     const state = useAppSelector(selectDocumentSlice)
     const [putDocument] = usePutDocumentMutation()
+    const [postDocument] = usePostDocumentMutation()
     const [errorMessage, setErrorMessage] = useState('')
 
     const validation = yup.object({
@@ -29,12 +30,9 @@ export const DocumentForm = () => {
         for (const file of e.target?.files) {
             if (isValid && file != null) {
                 setErrorMessage('')
-                let document: DocumentModel = {
-                    id: state.editDocument?.id,
-                    name: file.name,
-                    content: await blobToBase64(file),
-                }
-                await putDocument(document)
+                const formData = new FormData();
+                formData.append('file', file);
+                await postDocument(formData)
                     .unwrap()
                     .then(() => { e.target.value = null })
                     .catch(catchFunction)

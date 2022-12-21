@@ -13,6 +13,14 @@ export const documentApi = createApi({
             query: (args) => '/documents',
             providesTags: ['Documents'],
         }),
+        postDocument: builder.mutation<DocumentIdModel, FormData>({
+            query: (document) => ({
+                url: '/documents/upload',
+                method: 'POST',
+                body: document,
+            }),
+            invalidatesTags: ['Documents'],
+        }),
         putDocument: builder.mutation<DocumentIdModel, DocumentModel>({
             query: ({id, ...patch}) => ({
                 url: '/documents',
@@ -33,5 +41,6 @@ export const documentApi = createApi({
 
 export const {
     useGetDocumentsQuery, 
+    usePostDocumentMutation,
     usePutDocumentMutation,
     useDeleteDocumentMutation } = documentApi;
