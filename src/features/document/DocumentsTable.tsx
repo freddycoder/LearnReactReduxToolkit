@@ -2,8 +2,7 @@ import { useState } from "react"
 import { DeleteDialog } from "../../components/DeleteDialog"
 import { useGetDocumentsQuery, useDeleteDocumentMutation } from "../../services/document/DocumentApi"
 import { DocumentModel } from "../../models/DocumentModel"
-import { Box, Button } from "@mui/material"
-import { positions } from "@mui/system"
+import { Button } from "@mui/material"
 
 
 export const DocumentsTable = () => {
