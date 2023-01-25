@@ -1,6 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { Product } from "../../models/Product";
 
+declare global {
+    interface Window {
+        PRODUCT_API_URL: string;
+    }
+}
+
 export const productApi = createApi({
     reducerPath: 'productsApi',
     baseQuery: fetchBaseQuery({

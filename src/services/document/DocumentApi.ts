@@ -2,6 +2,12 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { DocumentIdModel } from '../../models/DocumentIdModel';
 import { DocumentModel } from '../../models/DocumentModel';
 
+declare global {
+    interface Window {
+        PRODUCT_API_URL: string;
+    }
+}
+
 export const documentApi = createApi({
     reducerPath: 'documentsApi',
     baseQuery: fetchBaseQuery({

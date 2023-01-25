@@ -7,3 +7,17 @@ The backend API used is in this repo. https://github.com/freddycoder/LearnNestJS
 ## Features
 
 - CRUD operations on a list of products
+
+## Docker
+
+Build the app
+
+```
+docker build -t erabliereapi/product-ui .
+```
+
+Run the app
+
+```
+docker run -d -p 3011:80 erabliereapi/product-ui
+```
