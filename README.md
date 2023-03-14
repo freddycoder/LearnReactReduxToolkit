@@ -21,3 +21,25 @@ Run the app
 ```
 docker run -d -p 3011:80 erabliereapi/product-ui
 ```
+
+## Developpment
+
+This app is using pnpm as pacakge manager.
+
+Install pnpm
+
+```
+npm install -g pnpm
+```
+
+Install dependencies
+
+```
+pnpm install
+```
+
+Run the app
+
+```
+pnpm start
+```
