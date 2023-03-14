@@ -1,7 +1,7 @@
-FROM node:lts-alpine AS builder
+FROM gplane/pnpm:node18-alpine AS builder
 WORKDIR /app
 COPY . .
-RUN npm install
+RUN pnpm install --frozen-lockfile
 RUN npm run build
 
 FROM nginx:1-alpine
