@@ -1,4 +1,4 @@
-FROM gplane/pnpm:node18-alpine AS builder
+FROM gplane/pnpm:7.27-node18-alpine AS builder
 WORKDIR /app
 COPY . .
 RUN pnpm install --frozen-lockfile
