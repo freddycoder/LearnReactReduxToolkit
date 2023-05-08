@@ -14,6 +14,27 @@ export const DocumentsTable = () => {
 
     const [openDeleteAllDocumentsDialog, setOpenDeleteAllDocumentsDialog] = useState(false);
 
+    const downloadFileWithBearer = (href: string, fileName: string) => {
+        let anchor = document.createElement("a");
+        document.body.appendChild(anchor);
+        let file = href;
+
+        let headers = new Headers();
+        headers.append('Authorization', 'Bearer MY-TOKEN');
+
+        fetch(file, { headers })
+            .then(response => response.blob())
+            .then(blobby => {
+                let objectUrl = window.URL.createObjectURL(blobby);
+
+                anchor.href = objectUrl;
+                anchor.download = fileName;
+                anchor.click();
+
+                window.URL.revokeObjectURL(objectUrl);
+            });
+    }
+
     return (
         <>
             <DeleteDialog
@@ -73,6 +94,7 @@ export const DocumentsTable = () => {
                             <td>{document.description}</td>
                             <td>{document.size}</td>
                             <td>
+                                {document.downloadUrl && <button onClick={() => downloadFileWithBearer(document.downloadUrl ?? "", document.name ?? "")}>Télécharger</button>}
                                 <button onClick={() => {
                                     setSingleDeleteDocument(document)
                                     setOpenSingleDeleteDialog(true)

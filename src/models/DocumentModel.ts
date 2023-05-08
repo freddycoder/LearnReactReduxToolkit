@@ -4,4 +4,5 @@ export class DocumentModel {
     description?: string
     size?: number
     content?: string
+    downloadUrl?: string
 }
