@@ -39,11 +39,6 @@ spec:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
           runAsNonRoot: true
-          # capabilities:
-          #   drop:
-          #   - ALL
-          #   add:
-
         livenessProbe:
           httpGet:
             path: /
@@ -51,7 +46,7 @@ spec:
           initialDelaySeconds: 30
           periodSeconds: 10
           timeoutSeconds: 5
-        redinessProbe:
+        readinessProbe:
           httpGet:
             path: /
             port: 80
@@ -80,6 +75,6 @@ spec:
   type: NodePort
   ports:
   - port: 80
-    nodePort: 30080
+    nodePort: 30081
   selector:
     app: react-iu
