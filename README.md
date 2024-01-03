@@ -22,17 +22,25 @@ Run the app
 docker run -d -p 3011:80 erabliereapi/product-ui
 ```
 
+## Kubernetes
+
+Deploy the app
+
+```
+kubectl apply -f k8s/deployment.yaml
+```
+
 ## Developpment
 
 This app is using pnpm as pacakge manager.
 
-Install pnpm
+### Install pnpm
 
 ```
 npm install -g pnpm
 ```
 
-Install dependencies
+### Install dependencies
 
 ```
 pnpm install

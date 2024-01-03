@@ -14,7 +14,7 @@ export const store = configureStore({
     documentSlice: documentSlice.reducer
 
   },
-  middleware: (getDefaultMiddleware) => {
+  middleware: (getDefaultMiddleware: any) => {
     return getDefaultMiddleware().concat(productApi.middleware).concat(documentApi.middleware).concat(errorManagementMiddleware)
   },
 });

@@ -26,8 +26,38 @@ spec:
     spec:
       containers:
       - name: react-iu
-        image: crudiu:latest
-        imagePullPolicy: Never
+        image: erabliereapi/product-ui:latest
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: "0.5"
+            memory: "512Mi"
+          requests:
+            cpu: "0.1"
+            memory: "256Mi"
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+          # capabilities:
+          #   drop:
+          #   - ALL
+          #   add:
+
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+        redinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
         ports:
         - containerPort: 80
           protocol: TCP
