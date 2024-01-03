@@ -37,8 +37,6 @@ spec:
             memory: "256Mi"
         securityContext:
           allowPrivilegeEscalation: false
-          readOnlyRootFilesystem: true
-          runAsNonRoot: true
         livenessProbe:
           httpGet:
             path: /
@@ -57,9 +55,17 @@ spec:
         - containerPort: 80
           protocol: TCP
         volumeMounts:
+        - name: cache
+          mountPath: /var/cache/nginx
+        - name: tmp
+          mountPath: /tmp/nginx
         - name: react-iu-config
           mountPath: /usr/share/nginx/html/static/config
       volumes:
+      - name: cache
+        emptyDir: {}
+      - name: tmp
+        emptyDir: {} 
       - name: react-iu-config
         configMap:
           name: config-react-iu
