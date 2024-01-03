@@ -26,15 +26,46 @@ spec:
     spec:
       containers:
       - name: react-iu
-        image: crudiu:latest
-        imagePullPolicy: Never
+        image: erabliereapi/product-ui:latest
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: "0.5"
+            memory: "512Mi"
+          requests:
+            cpu: "0.1"
+            memory: "256Mi"
+        securityContext:
+          allowPrivilegeEscalation: false
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
         ports:
         - containerPort: 80
           protocol: TCP
         volumeMounts:
+        - name: cache
+          mountPath: /var/cache/nginx
+        - name: tmp
+          mountPath: /tmp/nginx
         - name: react-iu-config
           mountPath: /usr/share/nginx/html/static/config
       volumes:
+      - name: cache
+        emptyDir: {}
+      - name: tmp
+        emptyDir: {} 
       - name: react-iu-config
         configMap:
           name: config-react-iu
@@ -50,6 +81,6 @@ spec:
   type: NodePort
   ports:
   - port: 80
-    nodePort: 30080
+    nodePort: 30081
   selector:
     app: react-iu

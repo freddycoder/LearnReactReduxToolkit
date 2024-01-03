@@ -24,5 +24,5 @@ jobs:
 
       # Build the image
       - name: Docker build
-        run: docker build -t learnreactredux:latest .
+        run: docker build -t erabliereapi/product-ui:latest .
         
