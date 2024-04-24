@@ -4,5 +4,5 @@ COPY . .
 RUN pnpm install --frozen-lockfile
 RUN pnpm run build
 
-FROM nginx:1.25.4-alpine
+FROM nginx:1.25.5-alpine
 COPY --from=builder /app/dist /usr/share/nginx/html
