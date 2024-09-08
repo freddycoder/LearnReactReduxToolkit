@@ -3,5 +3,5 @@ WORKDIR /app
 COPY . .
 RUN pnpm install --frozen-lockfile && pnpm run build
 
-FROM nginx:alpine3.20-slim
+FROM nginx:1-alpine3.20-slim
 COPY --from=builder /app/dist /usr/share/nginx/html
