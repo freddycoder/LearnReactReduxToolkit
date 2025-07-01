@@ -9,18 +9,25 @@ export const CrudProduitErabliereApi = () => {
         console.log(error)
     }
 
-    return (<div>
-        {
-            error ? (
-                <div>Sorry... An error occure <a href="/">Retry</a></div>
-            ) : isLoading ? (
-                <div>Loading...</div>
-            ) : data ? (
-                <div>
-                    <ProduitForm />
-                    <ProduitsTable />
-                </div>
-            ) : null
-        }</div>
-    )
+    let content;
+    if (error) {
+        content = <div>Sorry... An error occure <a href="/">Retry</a></div>;
+    } else if (isLoading) {
+        content = <div>Loading...</div>;
+    } else if (data) {
+        content = (
+            <div>
+                <ProduitForm />
+                <ProduitsTable />
+            </div>
+        );
+    } else {
+        content = null;
+    }
+
+    return (
+        <div>
+            {content}
+        </div>
+    );
 }
